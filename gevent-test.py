@@ -13,7 +13,7 @@ start = datetime.now()
 
 greenlets = [gevent.spawn(f, 'https://github.com/yxzoro') for i in range(100)]
 
-gevent.joinall(greenlets)
+gevent.joinall(greenlets)  # 该句是阻塞的,即将所有协程加入到统一管理,然后等待所有协程都完成后,才能继续执行后面的语句.
 
 print [greenlet.value for greenlet in greenlets]  #use greenlet.value to get result of the function in this greenlet !!
 
