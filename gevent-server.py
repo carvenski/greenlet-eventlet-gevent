@@ -34,3 +34,19 @@ if __name__ == '__main__':
     server(9999)
 
     
+## there are maybe thousands of client in concurrency:
+ 1 import socket
+ 2  
+ 3 HOST = 'localhost'    # The remote host
+ 4 PORT = 9999         # The same port as used by the server
+ 5 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+ 6 s.connect((HOST, PORT))
+ 7 while True:
+ 8     msg = bytes(input(">>:"),encoding="utf8")
+ 9     s.sendall(msg)
+10     data = s.recv(1024)
+11     #print(data)
+12  
+13     print('Received', repr(data))
+14 s.close()
+
